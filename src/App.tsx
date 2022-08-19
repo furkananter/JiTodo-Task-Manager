@@ -1,15 +1,20 @@
 import React from 'react';
+import InputField from 'components/InputField';
 
-const style = {
-  main: "w-full h-full flex justify-center items-center bg-red-600",
-}
 
-let name: string;
-name = "asd";
+// Sonra buna bakacağım.
+// const style = {
+//   main: "w-screen h-screen flex flex-col items-center bg-primary",
+//   header: "text-3xl mt-3.5 z-1 text-white font-semibold text-center md:text-4xl md:mt-10",
+// }
 
-function App() {
+
+
+const App: React.FC = ()  => {
   return (
-    <div className={style.main}>asdad
+    <div className="w-screen h-screen flex flex-col items-center bg-primary">
+      <span className="text-3xl mt-3.5 z-1 text-white font-semibold text-center md:text-4xl md:mt-10">Jitodo</span>
+      <InputField />
     </div>
   );
 }
