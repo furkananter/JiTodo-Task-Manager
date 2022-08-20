@@ -26,7 +26,7 @@ const App: React.FC = ()  => {
   }
 
   return (
-    <div className="w-full h-screen flex flex-col px-8 md:px-20 lg:px-40 bg-primary text-center ">
+    <div className="w-full h-screen flex flex-col px-8 md:px-20 lg:px-60 bg-primary text-center ">
         <span className="text-3xl text-white mt-3.5 z-1 font-semibold text-center md:text-4xl md:my-6">JiTodo</span>
         <InputField todo={todo} setTodo={setTodo} handleAdd={handleAdd} />
     </div>
