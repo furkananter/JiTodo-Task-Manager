@@ -51,10 +51,10 @@ const SingleTodo: React.FC<Props> = ({ todo, setTodos, todos }: Props) => {
   return (
     <form className="flex bg-white dark:bg-black dark:bg-opacity-20 bg-opacity-20 backdrop-blur-lg drop-shadow-lg text-white justify-between p-4 items-center mx-2 my-4 rounded-md">
       {todo.isDone ? (
-        <s className="whitespace-normal dark:text-white text-white opacity-70 line-clamp-1 text-lg capitalize">{todo.todo}</s  > /* Todo lined Item */
+        <s className="whitespace-normal overflow-x-auto dark:text-white text-white opacity-70 line-clamp-2 text-lg capitalize">{todo.todo}</s  > /* Todo lined Item */
         ): (
           
-        <span className="whitespace-normal dark:text-white line-clamp-1 text-lg capitalize">{todo.todo}</span> /* Todo Item */
+        <span className="whitespace-normal overflow-x-auto dark:text-white line-clamp-1 text-lg capitalize">{todo.todo}</span> /* Todo Item */
       )}
 
 
