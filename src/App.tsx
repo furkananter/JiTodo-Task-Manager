@@ -7,8 +7,8 @@ import { idText } from "typescript";
 
 
 const styleApp = {
-  main: "w-full h-screen flex flex-col px-8 md:px-20 lg:px-60 bg-primary text-center",
-  logo: "text-3xl text-white mt-3.5 z-1 font-semibold text-center md:text-4xl md:my-6",
+  main: "w-full min-h-screen flex flex-col px-8 md:px-20 lg:px-60 bg-primary text-center",
+  logo: "text-3xl text-fifth mt-3.5 z-1 font-semibold text-center md:text-4xl md:my-6",
 }
 
 const App: React.FC = () => {

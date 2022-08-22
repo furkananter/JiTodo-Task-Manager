@@ -15,7 +15,9 @@ interface Props {
 
 const TodoList: React.FC<Props> = ({ todos, setTodos }: Props) => {
   return (
-    <div className="text-white w-full items-center justify-center flex">
+    <div className="text-fourth items-center justify-center md:w-1/2 lg:flex-wrap">
+          {/* <div className="text-white items-center justify-center flex-wrap md:w-1/2 lg:flex-wrap"> */}
+
       {/*  todos.map works like that: 
             - it takes the array of todos and maps it to an array of SingleTodo components.
             - it takes the todo and passes it to the SingleTodo component.

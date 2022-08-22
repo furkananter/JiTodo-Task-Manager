@@ -3,7 +3,7 @@ import { IoIosCheckmark } from "react-icons/io";
 
 const styleForm =  {
     form: 'flex mt-3 items-center relative',
-    input: 'w-full h-12 text-white rounded-full bg-second placeholder:text-slate-400 shadow-special-before font-light text-sm md:text-xl lg:text-2xl focus:shadow-special transition-shadow pl-8 md:h-16 outline-none border-2',
+    input: 'w-full h-12 text-white rounded-full border-fifth bg-second placeholder:text-slate-200 shadow-special-before font-light text-sm md:text-xl lg:text-2xl focus:shadow-special transition-shadow pl-8 md:h-16 outline-none border-2',
     button: "absolute flex right-1 justify-center items-center bg-white w-10 h-10 rounded-[100%] md:right-2 md:w-12 md:h-12 hover:bg-gray-200  active:scale-[0.95] active:shadow-sm",   
     icon: 'text-4xl text-second'
 }
