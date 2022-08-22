@@ -3,6 +3,7 @@ import { useState } from "react";
 import InputField from "components/InputField";
 import { Todo } from "./model";
 import TodoList from "components/TodoList";
+import { idText } from "typescript";
 
 
 const styleApp = {
@@ -11,11 +12,14 @@ const styleApp = {
 }
 
 const App: React.FC = () => {
+
+  
   const [todo, setTodo] = useState<string>("");
   const [todos, setTodos] = useState<Array<Todo>>([]);
 
   const handleAdd = (e: React.FormEvent) => {
     e.preventDefault();
+    
     // ENG: When we add a todo, we want to add it to the todos array.
     // ENG: It should set our State.
 
@@ -23,10 +27,10 @@ const App: React.FC = () => {
     if (todo.length > 0) {
       setTodos([...todos, { id: Date.now(), todo: todo, isDone: false }]);
       setTodo("");
+    
     }
   };
 console.log(todos)
-
   return (
     <div className={styleApp.main}>
       <span className={styleApp.logo}>
