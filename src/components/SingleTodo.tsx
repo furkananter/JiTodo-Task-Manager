@@ -1,7 +1,7 @@
 
 import { Todo } from "../model";
 import { IoTrashBinOutline } from "react-icons/io5";
-import {MdDone,MdEdit, MdEditOff} from "react-icons/md";
+import {MdDone,MdEdit,MdEditOff, MdDoneAll} from "react-icons/md";
 
 // This type is for defining the props of the component.
 // Todo is the type of the todo.
@@ -49,9 +49,9 @@ const SingleTodo: React.FC<Props> = ({ todo, setTodos, todos }: Props) => {
   // }
 
   return (
-    <form className="flex bg-white dark:bg-black dark:bg-opacity-20 bg-opacity-20 backdrop-blur-lg drop-shadow-lg text-white justify-between p-4 items-center mx-2 my-4 rounded-md">
+    <form className="flex bg-white dark:bg-black dark:text-white text-black dark:bg-opacity-20 bg-opacity-20 backdrop-blur-lg drop-shadow-lg justify-between p-4 items-center mx-2 my-4 rounded-md">
       {todo.isDone ? (
-        <s className="whitespace-normal overflow-x-auto dark:text-white text-white opacity-70 line-clamp-2 text-lg capitalize">{todo.todo}</s  > /* Todo lined Item */
+        <s className="whitespace-normal overflow-x-auto dark:text-white text-black opacity-60 dark:opacity-70 line-clamp-2 text-lg capitalize">{todo.todo}</s  > /* Todo lined Item */
         ): (
           
         <span className="whitespace-normal overflow-x-auto dark:text-white line-clamp-1 text-lg capitalize">{todo.todo}</span> /* Todo Item */
@@ -76,7 +76,7 @@ const SingleTodo: React.FC<Props> = ({ todo, setTodos, todos }: Props) => {
           e.preventDefault();
           console.log("Tıklandı")
         }}
-         className="mr-2 hover:text-white hover:bg-opacity-30 hover:bg-white opacity-80 active:scale-[0.95] p-1.5 rounded-md disabled:opacity-30"
+         className="mr-2 hover:text-black dark:hover:text-white hover:bg-opacity-30 hover:bg-white opacity-80 active:scale-[0.95] p-1.5 rounded-md disabled:opacity-30"
          disabled={todo.isDone ? true : false}
          >
           {todo.isDone ? (
@@ -86,14 +86,14 @@ const SingleTodo: React.FC<Props> = ({ todo, setTodos, todos }: Props) => {
         </button> {/* Edit icon */}
         <span
         onClick={() => handleDelete(todo.id)} 
-        className="mr-2 hover:text-white hover:bg-opacity-30 hover:bg-white opacity-80 active:scale-[0.95] p-1.5 rounded-md">
+        className="mr-2 hover:text-black dark:hover:text-white  hover:bg-opacity-30 hover:bg-white opacity-80 active:scale-[0.95] p-1.5 rounded-md">
           <IoTrashBinOutline size={24} />
         </span> {/* Delete */}
         <span 
-        className=" hover:text-white hover:bg-opacity-30 hover:bg-white opacity-80 active:scale-[0.95] p-1.5 rounded-md"
+        className="hover:text-black dark:hover:text-white hover:bg-opacity-30 hover:bg-white opacity-80 active:scale-[0.95] p-1.5 rounded-md"
         onClick={() => handleDone(todo.id)}
         >
-          <MdDone size={24}/>
+           {todo.isDone ? (<MdDoneAll size={24} />):(<MdDone size={24}/>)} 
         </span> {/* Check */}
       </div> {/* Edit and Delete buttons */}
     </form> // Form

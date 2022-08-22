@@ -25,6 +25,7 @@ module.exports = {
         'button-before': 'inset -0px -1px 0px black',
         'special': '0px 0px 10px 1000px rgba(0,0,0, 0.5)',
       },
+      
     },
   },
   plugins: [],

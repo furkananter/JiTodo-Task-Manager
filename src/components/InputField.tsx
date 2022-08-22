@@ -3,8 +3,8 @@ import { IoIosCheckmark } from "react-icons/io";
 
 const styleForm =  {
     form: 'flex mt-3 items-center relative',
-    input: 'w-full h-12 dark:bg-black dark:bg-opacity-20 text-white rounded-full bg-white bg-opacity-20 backdrop-blur-lg drop-shadow-lg placeholder:text-slate-200 shadow-special-before dark:shadow-special-before-dark font-light text-sm md:text-xl lg:text-2xl focus:shadow-special transition-shadow pl-8 md:h-16 outline-none ',
-    button: "absolute flex right-1 text-white hover:text-black justify-center items-center bg-white bg-opacity-50 backdrop-blur-lg drop-shadow-lg w-10 h-10 rounded-[100%] md:right-2 md:w-12 md:h-12 hover:bg-gray-200 active:scale-[0.95] active:shadow-sm",   
+    input: 'w-full h-12 dark:bg-black dark:bg-opacity-20 text-white rounded-full bg-white bg-opacity-20 backdrop-blur-lg drop-shadow-lg placeholder:text-black dark:placeholder:text-slate-200 shadow-special-before dark:shadow-special-before-dark font-light text-sm md:text-xl lg:text-2xl focus:shadow-special transition-shadow pl-8 md:h-16 outline-none ',
+    button: "absolute flex right-1 dark:text-white text-black hover:text-black justify-center items-center bg-white bg-opacity-50 backdrop-blur-lg drop-shadow-lg w-10 h-10 rounded-[100%] md:right-2 md:w-12 md:h-12 hover:bg-gray-200 active:scale-[0.95] active:shadow-sm",   
     icon: 'text-4xl '
 }
 

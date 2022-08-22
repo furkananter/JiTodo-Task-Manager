@@ -15,7 +15,7 @@ interface Props {
 
 const TodoList: React.FC<Props> = ({ todos, setTodos }: Props) => {
   return (
-    <div className="text-white dark:bg-black dark:bg-opacity-0 bg-white bg-opacity-0 shadow-lg backdrop-blur-lg m-4 rounded-xl items-center justify-center md:w-1/2 lg:flex-wrap">
+    <div className="text-white dark:bg-black dark:bg-opacity-0 bg-white bg-opacity-0 shadow-lg backdrop-blur-lg my-4 rounded-xl items-center justify-center md:w-1/2 lg:flex-wrap">
     {/* <div className="text-white items-center justify-center flex-wrap md:w-1/2 lg:flex-wrap"> */}
 
       {/*  todos.map works like that: 
@@ -33,6 +33,7 @@ const TodoList: React.FC<Props> = ({ todos, setTodos }: Props) => {
             
             - DE: todos.map funktioni das Array von Todos in einzelne Todo Components umwandeln.
       */}
+      <span className="text-2xl dark:text-gray-100 text-black opacity-70 flex m-4">Active Tasks</span>
       {todos.map((todo) => (
         <SingleTodo
           todo={todo}
