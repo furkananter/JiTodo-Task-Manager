@@ -26,6 +26,7 @@ type Props = {
 //* TR: SingleTodo component'ının props'ında todo, todos ve setTodos'ını alır.
 
 const SingleTodo: React.FC<Props> = ({ todo, setTodos, todos }: Props) => {
+ 
   //! ENG: This function is used to get done the todo.
   const handleDone = (id:number) => {
     setTodos(
@@ -58,14 +59,31 @@ const SingleTodo: React.FC<Props> = ({ todo, setTodos, todos }: Props) => {
 
 
       <div className="flex items-center justify-center">
-        <span
-         onClick={() => {}}
-         className="mr-2 hover:text-primary hover:bg-white active:scale-[0.95] p-1.5 rounded-md">
+        {/*
+            - Eğer butonum isDone'da true döndürüyorsa bu durumda, MdEditOff iconunu çalıştır.
+            - Aynı zamanda isDone true döndüğü zaman button için disabled olmasını sağlar.
+            - Span için yapmak istiyordum ama bunu spana uygulayamadım. 
+            - Eğer butonum isDone'da false döndürüyorsa bu durumda, MdEdit iconunu çalıştır.
+            
+            - Butonumun çalışıp çalışmadığını görmek için console.log("Tıklandı") yazdırıyorum.
+            - Butonum isDone : true iken çalışmıyor. isDone : false ise çalışıyor.
+            - ekranın yenilenmesini önlemek için ise e parametresiyle e.preventDefault yapıyorum.
+            eğer 
+         
+        */}
+        <button
+         onClick={(e) => {
+          e.preventDefault();
+          console.log("Tıklandı")
+        }}
+         className="mr-2 hover:text-primary hover:bg-white active:scale-[0.95] p-1.5 rounded-md disabled:opacity-50"
+         disabled={todo.isDone ? true : false}
+         >
           {todo.isDone ? (
             <MdEditOff size={24} />
             ): <MdEdit size={24} />
           }
-        </span> {/* Edit icon */}
+        </button> {/* Edit icon */}
         <span
         onClick={() => handleDelete(todo.id)} 
         className="mr-2 hover:text-primary  hover:bg-white active:scale-[0.95] p-1.5 rounded-md">
