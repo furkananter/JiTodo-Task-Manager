@@ -49,12 +49,12 @@ const SingleTodo: React.FC<Props> = ({ todo, setTodos, todos }: Props) => {
   // }
 
   return (
-    <form className="flex bg-fifth text-primary justify-between p-4 items-center mx-2 my-4 rounded-md">
+    <form className="flex bg-white dark:bg-black dark:bg-opacity-20 bg-opacity-20 backdrop-blur-lg drop-shadow-lg text-white justify-between p-4 items-center mx-2 my-4 rounded-md">
       {todo.isDone ? (
-        <s className="text-primary line-clamp-1 text-lg capitalize">{todo.todo}</s  > /* Todo lined Item */
+        <s className="whitespace-normal dark:text-white text-white opacity-70 line-clamp-1 text-lg capitalize">{todo.todo}</s  > /* Todo lined Item */
         ): (
           
-        <span className="text-primary line-clamp-1 text-lg capitalize">{todo.todo}</span> /* Todo Item */
+        <span className="whitespace-normal dark:text-white line-clamp-1 text-lg capitalize">{todo.todo}</span> /* Todo Item */
       )}
 
 
@@ -76,7 +76,7 @@ const SingleTodo: React.FC<Props> = ({ todo, setTodos, todos }: Props) => {
           e.preventDefault();
           console.log("Tıklandı")
         }}
-         className="mr-2 hover:text-primary hover:bg-white active:scale-[0.95] p-1.5 rounded-md disabled:opacity-50"
+         className="mr-2 hover:text-white hover:bg-opacity-30 hover:bg-white opacity-80 active:scale-[0.95] p-1.5 rounded-md disabled:opacity-30"
          disabled={todo.isDone ? true : false}
          >
           {todo.isDone ? (
@@ -86,11 +86,11 @@ const SingleTodo: React.FC<Props> = ({ todo, setTodos, todos }: Props) => {
         </button> {/* Edit icon */}
         <span
         onClick={() => handleDelete(todo.id)} 
-        className="mr-2 hover:text-primary  hover:bg-white active:scale-[0.95] p-1.5 rounded-md">
+        className="mr-2 hover:text-white hover:bg-opacity-30 hover:bg-white opacity-80 active:scale-[0.95] p-1.5 rounded-md">
           <IoTrashBinOutline size={24} />
         </span> {/* Delete */}
         <span 
-        className="hover:text-primary hover:bg-white active:scale-[0.95] p-1.5 rounded-md"
+        className=" hover:text-white hover:bg-opacity-30 hover:bg-white opacity-80 active:scale-[0.95] p-1.5 rounded-md"
         onClick={() => handleDone(todo.id)}
         >
           <MdDone size={24}/>

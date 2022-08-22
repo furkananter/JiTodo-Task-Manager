@@ -20,7 +20,7 @@ module.exports = {
         },
       },
       boxShadow: {
-        'special-before': 'inset 0 0 5px black',
+        'special-before': 'inset 0 0 5px white',
         'button-before': 'inset -0px -1px 0px black',
         'special': '0px 0px 10px 1000px rgba(0,0,0, 0.5)',
       },

@@ -4,10 +4,10 @@ import InputField from "components/InputField";
 import { Todo } from "./model";
 import TodoList from "components/TodoList";
 import { idText } from "typescript";
-
-
+// url1 =https://images.unsplash.com/photo-1604076850742-4c7221f3101b?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2731&q=80 
+// url2 = 
 const styleApp = {
-  main: "w-full min-h-screen flex flex-col px-8 md:px-20 lg:px-60 bg-primary text-center",
+  main: "w-full min-h-screen flex flex-col px-8 md:px-20 lg:px-60 bg-[url('https://images.unsplash.com/photo-1519681393784-d120267933ba?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2070&q=80')] bg-cover text-center",
   logo: "text-3xl text-fifth mt-3.5 z-1 font-semibold text-center md:text-4xl md:my-6",
 }
 
