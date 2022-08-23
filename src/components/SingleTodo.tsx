@@ -1,7 +1,7 @@
 import { Todo } from "../model";
 import { IoTrashBinOutline } from "react-icons/io5";
 import { MdDone, MdEdit, MdEditOff, MdDoneAll } from "react-icons/md";
-import React, { useEffect, useState, useRef } from "react";
+import React, { useEffect, useState, useRef, FormEvent } from "react";
 
 //--------------------------------------------------------------------------------
 // This type is for defining the props of the component.
@@ -92,7 +92,7 @@ const SingleTodo: React.FC<Props> = ({ todo, setTodos, todos }: Props) => {
           ref={editRef}
           value={editTodo}
           onChange={(e) => setEditTodo(e.target.value)}
-          className="p-2 text-green-400 bg-black bg-opacity-20 rounded-sm text-xs md:text-base lg:text-lg outline-none "
+          className={` p-2 ${editTodo <= "0" ? "bg-red-600 bg-opacity-30 animate-wiggle": "bg-black bg-opacity-20"} rounded-sm text-xs md:text-base lg:text-lg outline-none `}
         />
       ) : todo.isDone ? (
         <s className="whitespace-normal overflow-x-auto dark:text-white text-black opacity-60 dark:opacity-70 text-xs md:text-base lg:text-lg capitalize">
@@ -106,6 +106,7 @@ const SingleTodo: React.FC<Props> = ({ todo, setTodos, todos }: Props) => {
       <div className="flex items-center justify-center">
         {/*
           //------------------------------------------------------------------------------------
+           bg-black bg-opacity-20
             - 1) Eğer butonum isDone'da true döndürüyorsa bu durumda, MdEditOff iconunu çalıştır.
             - 2) Aynı zamanda isDone true döndüğü zaman button için disabled olmasını sağlar.
             - 3) Span için yapmak istiyordum ama bunu spana uygulayamadım. 
@@ -156,7 +157,7 @@ const SingleTodo: React.FC<Props> = ({ todo, setTodos, todos }: Props) => {
           className="hover:text-black dark:hover:text-white hover:bg-opacity-30 hover:bg-white opacity-80 active:scale-[0.95] p-1.5 rounded-md"
           onClick={() => handleDone(todo.id)}
         >
-          {todo.isDone ? <MdDoneAll size={24} /> : <MdDone size={24} />}
+          {todo.isDone ? <MdDoneAll className="text-green-300" size={24} /> : <MdDone size={24} />}
         </span>
         {/* Done Button */}
       </div>

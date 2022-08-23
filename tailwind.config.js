@@ -12,12 +12,17 @@ module.exports = {
       },
       animation: {
         'bounce-slow': 'bounceslow 0.5s ease-in-out infinite',
+          wiggle: 'wiggle 0.5s ease-in-out infinite',
       },
       keyframes: {
         bounceslow: {
           "0%, 100%": {transform: "translateX(0px)"}, 
           "50%": {transform: "translateX(-1px)"},
         },
+        wiggle: {
+          '0%, 100%': { transform: 'rotate(-0.5deg)' },
+          '50%': { transform: 'rotate(0.5deg)' },
+        }
       },
       boxShadow: {
         'special-before': 'inset 0 0 5px white',
