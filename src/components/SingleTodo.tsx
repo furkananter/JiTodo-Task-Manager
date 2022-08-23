@@ -92,7 +92,7 @@ const SingleTodo: React.FC<Props> = ({ todo, setTodos, todos }: Props) => {
           ref={editRef}
           value={editTodo}
           onChange={(e) => setEditTodo(e.target.value)}
-          className={` p-2 ${editTodo <= "0" ? "bg-red-600 bg-opacity-30 animate-wiggle": "dark:bg-black bg-white bg-opacity-20"} rounded-md text-xs md:text-base lg:text-lg outline-none `}
+          className={` p-2 ${editTodo <= "0" ? "bg-red-600 bg-opacity-30 animate-wiggle": "dark:bg-black bg-white bg-opacity-20 dark:bg-opacity-20"} rounded-md text-xs md:text-base lg:text-lg outline-none `}
         />
       ) : todo.isDone ? (
         <s className="whitespace-normal overflow-x-auto dark:text-white text-black opacity-60 dark:opacity-70 text-xs md:text-base lg:text-lg capitalize">
