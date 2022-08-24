@@ -3,10 +3,10 @@ import { useState } from "react";
 import InputField from "components/InputField";
 import { Todo } from "./model";
 import TodoList from "components/TodoList";
-import { idText } from "typescript";
+import { DragDropContext, DropResult } from "@hello-pangea/dnd";
 
 // Dark Mode:
-export const ThemeContext = React.createContext("light");
+// export const ThemeContext = React.createContext("light");
 
 const styleApp = {
   main: `w-full min-h-screen flex flex-col px-8 md:px-20 lg:px-60 bg-[url('./components/img/light.jpeg')] dark:bg-[url('./components/img/dark.jpeg')] bg-cover text-center`,
@@ -24,6 +24,7 @@ const App: React.FC = () => {
 
   const [todo, setTodo] = useState<string>("");
   const [todos, setTodos] = useState<Array<Todo>>([]);
+  const [completedTodos, setCompletedTodos] = useState<Array<Todo>>([]);
 
   const handleAdd = (e: React.FormEvent) => {
     e.preventDefault();
@@ -37,14 +38,25 @@ const App: React.FC = () => {
       setTodo("");
     }
   };
-  console.log(todos);
+
+  const onDragEnd = (result: DropResult) => {};
+
   return (
-    <div className={styleApp.main}>
-      <span className={styleApp.logo}>JiTodo</span> {/* Logo */}
-      <InputField todo={todo} setTodo={setTodo} handleAdd={handleAdd} />{" "}
-      {/* InputField */}
-      <TodoList todos={todos} setTodos={setTodos} /> {/* TodoList */}
-    </div> /* Main */
+    <DragDropContext onDragEnd={onDragEnd}>
+      <div className={styleApp.main}>
+        <span className={styleApp.logo}>JiTodo</span> {/* Logo */}
+        <InputField todo={todo} setTodo={setTodo} handleAdd={handleAdd} />
+        {/* InputField */}
+        <TodoList
+          todos={todos}
+          setTodos={setTodos}
+          completedTodos={completedTodos}
+          setCompletedTodos={setCompletedTodos}
+        />
+        {/* TodoList */}
+      </div>
+      {/* Main */}
+    </DragDropContext>
   );
 };
 

@@ -1,22 +1,23 @@
+import { Droppable } from "@hello-pangea/dnd";
 import { Todo } from "../model";
 import SingleTodo from "./SingleTodo";
-
 
 // This interface is for defining the props of the component.
 // It is used to typecheck the props of the component.
 // todos is an array of Todo's.
 // setTodos is a function that sets the state of the todos array.
 
-
-interface Props {
+interface Props { 
   todos: Array<Todo>;
   setTodos: React.Dispatch<React.SetStateAction<Array<Todo>>>;
+  completedTodos: Array<Todo>;
+  setCompletedTodos: React.Dispatch<React.SetStateAction<Array<Todo>>>;
 }
 
-const TodoList: React.FC<Props> = ({ todos, setTodos }: Props) => {
+const TodoList: React.FC<Props> = ({ todos, setTodos,completedTodos, setCompletedTodos }: Props) => {
   return (
-    <div className="text-white dark:bg-black dark:bg-opacity-0 bg-white bg-opacity-0 shadow-lg backdrop-blur-lg my-4 rounded-xl items-center justify-center md:w-1/2 lg:flex-wrap">
-    {/* <div className="text-white items-center justify-center flex-wrap md:w-1/2 lg:flex-wrap"> */}
+    <div className=" my-4 flex flex-wrap justify-center md:flex-nowrap lg:flex-nowrap">
+      {/* <div className="text-white items-center justify-center flex-wrap md:w-1/2 lg:flex-wrap"> */}
 
       {/*  todos.map works like that: 
             - it takes the array of todos and maps it to an array of SingleTodo components.
@@ -33,16 +34,53 @@ const TodoList: React.FC<Props> = ({ todos, setTodos }: Props) => {
             
             - DE: todos.map funktioni das Array von Todos in einzelne Todo Components umwandeln.
       */}
-      <span className="text-2xl dark:text-gray-100 text-black opacity-70 flex m-4">Active Tasks</span>
-      {todos.map((todo) => (
-        <SingleTodo
-          todo={todo}
-          key={todo.id}
-          todos={todos}
-          setTodos={setTodos}
-        />
-      ))}
-    </div>
+      <Droppable droppableId="TodosList" >
+        {(provided) => (
+          <div
+           ref={provided.innerRef}
+           {...provided.droppableProps}
+           className="w-full mr-2 text-white dark:bg-black dark:bg-opacity-0 bg-white bg-opacity-0 shadow-lg backdrop-blur-lg rounded-xl">
+            <span className="text-2xl dark:text-gray-100 text-black opacity-70 flex m-4">
+              Active Tasks
+            </span>
+            {todos.map((todo,index) => (
+              <SingleTodo
+                index={index}
+                todo={todo}
+                key={todo.id}
+                todos={todos}
+                setTodos={setTodos}
+              />
+            ))}
+            {provided.placeholder}
+          </div>
+  )}
+      </Droppable>
+
+      <Droppable droppableId="TodosRemove">
+        {(provided) => (
+          <div
+           ref={provided.innerRef}
+           {...provided.droppableProps}
+           className="w-full text-white dark:bg-black dark:bg-opacity-0 bg-white bg-opacity-0 shadow-lg backdrop-blur-lg rounded-xl">
+            <span className="text-2xl dark:text-gray-100 text-black opacity-70 flex m-4">
+              Completed Tasks
+            </span>
+            {completedTodos.map((todo, index) => (
+              <SingleTodo
+                index={index}
+                todo={todo}
+                key={todo.id}
+                todos={completedTodos}
+                setTodos={setCompletedTodos}
+              />
+            ))}
+            {provided.placeholder}
+          </div>
+  )}
+      </Droppable>
+      {/* end of completed tasks */}
+    </div> /* end of wrap */
   );
 };
 
