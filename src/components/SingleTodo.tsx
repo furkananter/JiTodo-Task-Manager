@@ -1,7 +1,7 @@
 import { Todo } from "../model";
 import { IoTrashBinOutline } from "react-icons/io5";
 import { MdDone, MdEdit, MdEditOff, MdDoneAll } from "react-icons/md";
-import React, { useEffect, useState, useRef } from "react";
+import React, { useEffect, useState, useRef, FormEvent, ReactFragment } from "react";
 import {motion} from "framer-motion";
 
 //--------------------------------------------------------------------------------
@@ -42,6 +42,11 @@ const SingleTodo: React.FC<Props> = ({
 
   
 
+  function handleInputChange(e: any) {
+    // set the new state value to what's currently in the input box
+    setEditTodo(e.target.value);
+  }
+
   //! ENG: This function is used to get done the todo.
   const handleDone = (id: number) => {
     setTodos(
@@ -75,6 +80,8 @@ const SingleTodo: React.FC<Props> = ({
     );
     setEdit(false);
   };
+ 
+
   //------------------------------------------------------------------------------------
   // TR: useRef Hook'u ile Edit Butonuna basıldığında direkt focus almasını sağlayacağız.
   // ENG: This function used for focus the edit input. With this code, you can directly focus the edit input.
@@ -100,9 +107,9 @@ const SingleTodo: React.FC<Props> = ({
         >
           {edit ? (
             <input
-              ref={editRef}
+              ref={editRef }
               value={editTodo}
-              onChange={(e) => setEditTodo(e.target.value)}
+              onChange={handleInputChange}
               className={` p-2 ${
                 editTodo <= "0"
                   ? "bg-red-600 bg-opacity-30 animate-wiggle"

@@ -38,7 +38,6 @@ const TodoList: React.FC<Props> = ({ todos, setTodos }: Props) => {
       */}
        
           <motion.div
-           
            className="w-full mr-2 text-white dark:bg-black dark:bg-opacity-0 bg-white bg-opacity-0 shadow-lg backdrop-blur-lg rounded-xl">
             <span className="text-2xl dark:text-gray-100 text-black opacity-70 flex m-4">
               Tasks
