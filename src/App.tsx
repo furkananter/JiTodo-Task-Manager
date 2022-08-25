@@ -1,9 +1,10 @@
-import React, { SyntheticEvent } from "react";
+import React from "react";
 import { useState } from "react";
 import InputField from "components/InputField";
 import { Todo } from "./model";
 import TodoList from "components/TodoList";
-import { DragDropContext, DropResult } from "@hello-pangea/dnd";
+
+
 
 // Dark Mode:
 // export const ThemeContext = React.createContext("light");
@@ -24,7 +25,7 @@ const App: React.FC = () => {
 
   const [todo, setTodo] = useState<string>("");
   const [todos, setTodos] = useState<Array<Todo>>([]);
-  const [completedTodos, setCompletedTodos] = useState<Array<Todo>>([]);
+  
 
   const handleAdd = (e: React.FormEvent) => {
     e.preventDefault();
@@ -39,10 +40,46 @@ const App: React.FC = () => {
     }
   };
 
-  const onDragEnd = (result: DropResult) => {};
+  // const onDragEnd = (result: DropResult) => {
+  //   const { destination, source } = result;
+
+  //   console.log(result);
+
+  //   if (!destination) {
+  //     return;
+  //   }
+
+  //   if (
+  //     destination.droppableId === source.droppableId &&
+  //     destination.index === source.index
+  //   ) {
+  //     return;
+  //   }
+
+  //   let add;
+  //   let active = todos;
+  //   let complete = completedTodos;
+  //   // Source Logic
+  //   if (source.droppableId === "TodosList") {
+  //     add = active[source.index];
+  //     active.splice(source.index, 1);
+  //   } else {
+  //     add = complete[source.index];
+  //     complete.splice(source.index, 1);
+  //   }
+
+  //   // Destination Logic
+  //   if (destination.droppableId === "TodosList") {
+  //     active.splice(destination.index, 0, add);
+  //   } else {
+  //     complete.splice(destination.index, 0, add);
+  //   }
+
+  //   setCompletedTodos(complete);
+  //   setTodos(active);
+  // };
 
   return (
-    <DragDropContext onDragEnd={onDragEnd}>
       <div className={styleApp.main}>
         <span className={styleApp.logo}>JiTodo</span> {/* Logo */}
         <InputField todo={todo} setTodo={setTodo} handleAdd={handleAdd} />
@@ -50,14 +87,10 @@ const App: React.FC = () => {
         <TodoList
           todos={todos}
           setTodos={setTodos}
-          completedTodos={completedTodos}
-          setCompletedTodos={setCompletedTodos}
         />
         {/* TodoList */}
       </div>
-      {/* Main */}
-    </DragDropContext>
-  );
+   ) /* Main */
 };
 
 export default App;

@@ -2,7 +2,6 @@ import { Todo } from "../model";
 import { IoTrashBinOutline } from "react-icons/io5";
 import { MdDone, MdEdit, MdEditOff, MdDoneAll } from "react-icons/md";
 import React, { useEffect, useState, useRef } from "react";
-import { Draggable } from "@hello-pangea/dnd";
 
 //--------------------------------------------------------------------------------
 // This type is for defining the props of the component.
@@ -32,10 +31,10 @@ type Props = {
 //--------------------------------------------------------------------------------
 
 const SingleTodo: React.FC<Props> = ({
-  index,
   todo,
   setTodos,
   todos,
+
 }: Props) => {
   const [edit, setEdit] = useState<boolean>(false);
   const [editTodo, setEditTodo] = useState<string>(todo.todo);
@@ -47,7 +46,7 @@ const SingleTodo: React.FC<Props> = ({
         todo.id === id ? { ...todo, isDone: !todo.isDone } : todo
       )
     );
-    console.log(todo.isDone);
+
   };
 
   //! ENG: This function is used to delete the todo.
@@ -88,16 +87,11 @@ const SingleTodo: React.FC<Props> = ({
   }, [edit]);
 
   return (
-    <Draggable draggableId={todo.id.toString()} index={index}>
-      {(provided) => (
         <form
           onSubmit={(e) => {
             handleEdit(e, todo.id);
           }}
-          {...provided.draggableProps}
-          {...provided.dragHandleProps}
-          ref={provided.innerRef}
-          className="flex bg-white dark:bg-black dark:text-white text-black dark:bg-opacity-20 bg-opacity-20 backdrop-blur-lg drop-shadow-lg justify-between p-4 items-center mx-2 my-4 rounded-md hover:scale-[1.01] hover:shadow hover:bg-opacity-30"
+          className="flex bg-white dark:bg-black dark:text-white text-black dark:bg-opacity-20 bg-opacity-20 backdrop-blur-lg drop-shadow-lg justify-between p-4 items-center mx-2 my-4 rounded-md hover:shadow hover:bg-opacity-30"
         >
           {edit ? (
             <input
@@ -187,8 +181,6 @@ const SingleTodo: React.FC<Props> = ({
           {/* Edit and Delete buttons */}
         </form>
         /* Form */
-      )}
-    </Draggable>
   );
 };
 
