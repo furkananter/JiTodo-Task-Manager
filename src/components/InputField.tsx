@@ -1,12 +1,15 @@
 import React from "react";
 import { IoIosCheckmark } from "react-icons/io";
+import { motion } from "framer-motion";
 
-const styleForm =  {
-    form: 'flex mt-3 items-center relative',
-    input: 'w-full h-12 dark:bg-black dark:bg-opacity-20 dark:text-white rounded-full bg-white bg-opacity-20 backdrop-blur-lg drop-shadow-lg placeholder:text-black dark:placeholder:text-slate-200 shadow-special-before dark:shadow-special-before-dark font-light text-sm md:text-xl lg:text-2xl focus:shadow-special transition-shadow pl-8 md:h-16 outline-none ',
-    button: "absolute flex right-1 dark:text-white text-black hover:text-black justify-center items-center bg-white bg-opacity-50 backdrop-blur-lg drop-shadow-lg w-10 h-10 rounded-[100%] md:right-2 md:w-12 md:h-12 hover:bg-gray-200 active:scale-[0.95] active:shadow-sm",   
-    icon: 'text-4xl '
-}
+const styleForm = {
+  form: "flex mt-3 items-center relative",
+  input:
+    "w-full h-12 dark:bg-black dark:bg-opacity-20 dark:text-white rounded-full bg-white bg-opacity-20 backdrop-blur-lg drop-shadow-lg placeholder:text-black dark:placeholder:text-slate-200 shadow-special-before dark:shadow-special-before-dark font-light text-sm md:text-xl lg:text-2xl focus:shadow-special transition-shadow pl-8 md:h-16 outline-none ",
+  button:
+    "absolute flex right-1 dark:text-white text-black hover:text-black justify-center items-center bg-white bg-opacity-50 backdrop-blur-lg drop-shadow-lg w-10 h-10 rounded-[100%] md:right-2 md:w-12 md:h-12 hover:bg-gray-200 active:scale-[0.95] active:shadow-sm",
+  icon: "text-4xl ",
+};
 
 //* ENG: This is the InputField Propses interface.
 //*! TR: Bu InputField Props'larının interface'i.
@@ -24,10 +27,13 @@ interface Props {
 }
 
 const InputField: React.FC<Props> = ({ todo, setTodo, handleAdd }) => {
+  // create localstorage setitem function
 
   const inputRef = React.useRef<HTMLInputElement>(null);
   return (
-    <form
+    <motion.form
+      initial={{ translateX: 200 }}
+      animate={{ translateX: 0, transition: { duration: 1 } }}
       className={styleForm.form}
       onSubmit={(e) => {
         handleAdd(e);
@@ -43,14 +49,11 @@ const InputField: React.FC<Props> = ({ todo, setTodo, handleAdd }) => {
         placeholder="Enter a Task"
       />
       {/* Input Element */}
-      <button 
-        type="submit"
-        className={styleForm.button}
-      >
-        <IoIosCheckmark className={styleForm.icon}/>
+      <button type="submit" className={styleForm.button}>
+        <IoIosCheckmark className={styleForm.icon} />
       </button>
       {/* Button Element */}
-    </form> /* Form Element (Wrapper of InputField) */
+    </motion.form> /* Form Element (Wrapper of InputField) */
   );
 };
 

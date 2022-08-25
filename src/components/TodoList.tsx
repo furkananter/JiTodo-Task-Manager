@@ -1,5 +1,6 @@
 import { Todo } from "../model";
 import SingleTodo from "./SingleTodo";
+import { motion} from "framer-motion"
 
 // This interface is for defining the props of the component.
 // It is used to typecheck the props of the component.
@@ -12,8 +13,12 @@ interface Props {
 }
 
 const TodoList: React.FC<Props> = ({ todos, setTodos }: Props) => {
+ 
   return (
-    <div className=" my-4 flex flex-wrap justify-center md:flex-nowrap lg:flex-nowrap">
+    <motion.div
+    initial={{ translateX: -200}}
+    animate={{ translateX: 0 , transition: { duration: 1 }}}
+    className=" my-4 flex flex-wrap justify-center md:flex-nowrap lg:flex-nowrap">
       {/* <div className="text-white items-center justify-center flex-wrap md:w-1/2 lg:flex-wrap"> */}
 
       {/*  todos.map works like that: 
@@ -32,7 +37,8 @@ const TodoList: React.FC<Props> = ({ todos, setTodos }: Props) => {
             - DE: todos.map funktioni das Array von Todos in einzelne Todo Components umwandeln.
       */}
        
-          <div
+          <motion.div
+           
            className="w-full mr-2 text-white dark:bg-black dark:bg-opacity-0 bg-white bg-opacity-0 shadow-lg backdrop-blur-lg rounded-xl">
             <span className="text-2xl dark:text-gray-100 text-black opacity-70 flex m-4">
               Tasks
@@ -46,9 +52,9 @@ const TodoList: React.FC<Props> = ({ todos, setTodos }: Props) => {
                 setTodos={setTodos}
               />
             ))}
-          </div>
+          </motion.div>
       {/* end of completed tasks */}
-    </div> /* end of wrap */
+    </motion.div> /* end of wrap */
   );
 };
 

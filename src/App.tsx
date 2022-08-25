@@ -3,6 +3,7 @@ import { useState } from "react";
 import InputField from "components/InputField";
 import { Todo } from "./model";
 import TodoList from "components/TodoList";
+import { motion } from "framer-motion"
 
 
 
@@ -36,6 +37,8 @@ const App: React.FC = () => {
     //------------------------------------------------------------
     if (todo.length > 0) {
       setTodos([...todos, { id: Date.now(), todo: todo, isDone: false }]);
+      // localstorage setitem function
+      localStorage.setItem("todos", JSON.stringify(todo));
       setTodo("");
     }
   };

@@ -2,6 +2,7 @@ import { Todo } from "../model";
 import { IoTrashBinOutline } from "react-icons/io5";
 import { MdDone, MdEdit, MdEditOff, MdDoneAll } from "react-icons/md";
 import React, { useEffect, useState, useRef } from "react";
+import {motion} from "framer-motion";
 
 //--------------------------------------------------------------------------------
 // This type is for defining the props of the component.
@@ -38,6 +39,8 @@ const SingleTodo: React.FC<Props> = ({
 }: Props) => {
   const [edit, setEdit] = useState<boolean>(false);
   const [editTodo, setEditTodo] = useState<string>(todo.todo);
+
+  
 
   //! ENG: This function is used to get done the todo.
   const handleDone = (id: number) => {
@@ -87,11 +90,13 @@ const SingleTodo: React.FC<Props> = ({
   }, [edit]);
 
   return (
-        <form
+        <motion.form
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 , transition: { duration: 0.5 }}}
           onSubmit={(e) => {
             handleEdit(e, todo.id);
           }}
-          className="flex bg-white dark:bg-black dark:text-white text-black dark:bg-opacity-20 bg-opacity-20 backdrop-blur-lg drop-shadow-lg justify-between p-4 items-center mx-2 my-4 rounded-md hover:shadow hover:bg-opacity-30"
+          className="flex bg-white dark:bg-black dark:text-white text-white md:text-black md:dark:text-white dark:bg-opacity-20 bg-opacity-20 backdrop-blur-lg drop-shadow-lg justify-between p-4 items-center mx-2 my-4 rounded-md hover:shadow hover:bg-opacity-30"
         >
           {edit ? (
             <input
@@ -105,9 +110,12 @@ const SingleTodo: React.FC<Props> = ({
               } rounded-md text-xs md:text-base lg:text-lg outline-none `}
             />
           ) : todo.isDone ? (
-            <s className="whitespace-normal overflow-x-auto dark:text-white text-black opacity-60 dark:opacity-70 text-xs md:text-base lg:text-lg capitalize">
+            <motion.s
+            initial={{ x: -10 }}
+            animate={{ x: 0 ,transition: {duration:0.5}}}
+            className="whitespace-normal overflow-x-auto dark:text-white text-black opacity-60 dark:opacity-70 text-xs md:text-base lg:text-lg capitalize">
               {todo.todo}
-            </s> /* Todo lined Item */
+            </motion.s> /* Todo lined Item */
           ) : (
             <span className="whitespace-normal overflow-x-auto dark:text-white text-xs md:text-base lg:text-lg capitalize">
               {todo.todo}
@@ -142,7 +150,9 @@ const SingleTodo: React.FC<Props> = ({
 
           //--------------------------------------------------------------------------------------
         */}
-            <button
+            <motion.button
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 ,transition: {duration:0.4, delay: 0.2} }}
               type="button"
               onClick={() => {
                 // eğer, edit ve isDone true ise, setEdit true döndürsün.
@@ -154,16 +164,20 @@ const SingleTodo: React.FC<Props> = ({
               disabled={todo.isDone ? true : false}
             >
               {todo.isDone ? <MdEditOff size={24} /> : <MdEdit size={24} />}
-            </button>
+            </motion.button>
             {/* Edit Icon Button */}
-            <span
+            <motion.span
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 ,transition: {duration:0.6, delay: 0.2} }}
               onClick={() => handleDelete(todo.id)}
               className="mr-2 hover:text-black dark:hover:text-white  hover:bg-opacity-30 hover:bg-white opacity-80 active:scale-[0.95] p-1.5 rounded-md"
             >
               <IoTrashBinOutline size={24} />
-            </span>
+            </motion.span>
             {/* Delete Button */}
-            <span
+            <motion.span
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 ,transition: {duration:0.8, delay: 0.2} }}
               className="hover:text-black dark:hover:text-white hover:bg-opacity-30 hover:bg-white opacity-80 active:scale-[0.95] p-1.5 rounded-md"
               onClick={() => handleDone(todo.id)}
             >
@@ -175,11 +189,11 @@ const SingleTodo: React.FC<Props> = ({
               ) : (
                 <MdDone size={24} />
               )}
-            </span>
+            </motion.span>
             {/* Done Button */}
           </div>
           {/* Edit and Delete buttons */}
-        </form>
+        </motion.form>
         /* Form */
   );
 };
