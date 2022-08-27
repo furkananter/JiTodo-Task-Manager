@@ -7,6 +7,12 @@ import { motion} from "framer-motion"
 // todos is an array of Todo's.
 // setTodos is a function that sets the state of the todos array.
 
+const styleTodolist = {
+  wrap: " my-4 flex flex-wrap justify-center md:flex-nowrap lg:flex-nowrap",
+  completedTasks: "w-full mr-2 text-white dark:bg-black dark:bg-opacity-0 bg-white bg-opacity-0 shadow-lg backdrop-blur-lg rounded-xl",
+  tasksSpan: "text-2xl dark:text-gray-100 text-black opacity-70 flex m-4"
+}
+
 interface Props { 
   todos: Array<Todo>;
   setTodos: React.Dispatch<React.SetStateAction<Array<Todo>>>;
@@ -18,8 +24,7 @@ const TodoList: React.FC<Props> = ({ todos, setTodos }: Props) => {
     <motion.div
     initial={{ translateX: -200}}
     animate={{ translateX: 0 , transition: { duration: 1 }}}
-    className=" my-4 flex flex-wrap justify-center md:flex-nowrap lg:flex-nowrap">
-      {/* <div className="text-white items-center justify-center flex-wrap md:w-1/2 lg:flex-wrap"> */}
+    className={styleTodolist.wrap}>
 
       {/*  todos.map works like that: 
             - it takes the array of todos and maps it to an array of SingleTodo components.
@@ -38,8 +43,8 @@ const TodoList: React.FC<Props> = ({ todos, setTodos }: Props) => {
       */}
        
           <motion.div
-           className="w-full mr-2 text-white dark:bg-black dark:bg-opacity-0 bg-white bg-opacity-0 shadow-lg backdrop-blur-lg rounded-xl">
-            <span className="text-2xl dark:text-gray-100 text-black opacity-70 flex m-4">
+           className={styleTodolist.completedTasks} >
+            <span className={styleTodolist.tasksSpan} >
               Tasks
             </span>
             {todos.map((todo) => (

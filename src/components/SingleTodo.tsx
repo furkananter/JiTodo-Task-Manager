@@ -1,8 +1,25 @@
 import { Todo } from "../model";
 import { IoTrashBinOutline } from "react-icons/io5";
 import { MdDone, MdEdit, MdEditOff, MdDoneAll } from "react-icons/md";
-import React, { useEffect, useState, useRef, FormEvent, ReactFragment } from "react";
+import React, { useEffect, useState, useRef } from "react";
 import {motion} from "framer-motion";
+
+
+const styling = {
+  form: "flex bg-white dark:bg-black dark:text-white text-white md:text-black md:dark:text-white dark:bg-opacity-20 bg-opacity-20 backdrop-blur-lg drop-shadow-lg justify-between p-4 items-center mx-2 my-4 rounded-md hover:shadow hover:bg-opacity-30",
+  input: {
+    normal:"p-2 rounded-md text-xs md:text-base lg:text-lg outline-none " ,
+    true : "bg-red-600 bg-opacity-30 animate-wiggle",
+    false: "dark:bg-black bg-white bg-opacity-20 dark:bg-opacity-20"
+  },
+  s: "whitespace-normal overflow-x-auto dark:text-white text-black opacity-60 dark:opacity-70 text-xs md:text-base lg:text-lg capitalize",
+  span: "whitespace-normal overflow-x-auto dark:text-white text-xs md:text-base lg:text-lg capitalize",
+  buttonsDiv: "flex items-center justify-center",
+  editButton: "mr-2 hover:text-black dark:hover:text-white hover:bg-opacity-30 hover:bg-white opacity-80 active:scale-[0.95] p-1.5 rounded-md disabled:opacity-30",
+  deleteButton: "mr-2 hover:text-black dark:hover:text-white  hover:bg-opacity-30 hover:bg-white opacity-80 active:scale-[0.95] p-1.5 rounded-md",
+  doneButton: "hover:text-black dark:hover:text-white hover:bg-opacity-30 hover:bg-white opacity-80 active:scale-[0.95] p-1.5 rounded-md",
+  mdDoneAll: "dark:text-green-300 text-green-700"
+}
 
 //--------------------------------------------------------------------------------
 // This type is for defining the props of the component.
@@ -103,33 +120,34 @@ const SingleTodo: React.FC<Props> = ({
           onSubmit={(e) => {
             handleEdit(e, todo.id);
           }}
-          className="flex bg-white dark:bg-black dark:text-white text-white md:text-black md:dark:text-white dark:bg-opacity-20 bg-opacity-20 backdrop-blur-lg drop-shadow-lg justify-between p-4 items-center mx-2 my-4 rounded-md hover:shadow hover:bg-opacity-30"
+          className={styling.form}
         >
           {edit ? (
             <input
               ref={editRef }
               value={editTodo}
               onChange={handleInputChange}
-              className={` p-2 ${
+              className={` ${styling.input.normal} ${
                 editTodo <= "0"
-                  ? "bg-red-600 bg-opacity-30 animate-wiggle"
-                  : "dark:bg-black bg-white bg-opacity-20 dark:bg-opacity-20"
-              } rounded-md text-xs md:text-base lg:text-lg outline-none `}
+                  ? styling.input.true
+                  : styling.input.false
+              } `}
             />
           ) : todo.isDone ? (
             <motion.s
-            initial={{ x: -10 }}
+            initial={{ x: -5 }}
             animate={{ x: 0 ,transition: {duration:0.5}}}
-            className="whitespace-normal overflow-x-auto dark:text-white text-black opacity-60 dark:opacity-70 text-xs md:text-base lg:text-lg capitalize">
+            className={styling.s}>
               {todo.todo}
             </motion.s> /* Todo lined Item */
           ) : (
-            <span className="whitespace-normal overflow-x-auto dark:text-white text-xs md:text-base lg:text-lg capitalize">
+            <span className={styling.span}>
               {todo.todo}
             </span> /* Todo Item */
           )}
-          <div className="flex items-center justify-center">
-            {/*
+          <div className={styling.buttonsDiv}>
+          
+          {/*
           //------------------------------------------------------------------------------------
            bg-black bg-opacity-20
             - 1) Eğer butonum isDone'da true döndürüyorsa bu durumda, MdEditOff iconunu çalıştır.
@@ -167,7 +185,7 @@ const SingleTodo: React.FC<Props> = ({
                   setEdit(!edit);
                 }
               }}
-              className="mr-2 hover:text-black dark:hover:text-white hover:bg-opacity-30 hover:bg-white opacity-80 active:scale-[0.95] p-1.5 rounded-md disabled:opacity-30"
+              className={styling.editButton}
               disabled={todo.isDone ? true : false}
             >
               {todo.isDone ? <MdEditOff size={24} /> : <MdEdit size={24} />}
@@ -177,7 +195,7 @@ const SingleTodo: React.FC<Props> = ({
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 ,transition: {duration:0.6, delay: 0.2} }}
               onClick={() => handleDelete(todo.id)}
-              className="mr-2 hover:text-black dark:hover:text-white  hover:bg-opacity-30 hover:bg-white opacity-80 active:scale-[0.95] p-1.5 rounded-md"
+              className={styling.deleteButton}
             >
               <IoTrashBinOutline size={24} />
             </motion.span>
@@ -185,12 +203,12 @@ const SingleTodo: React.FC<Props> = ({
             <motion.span
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 ,transition: {duration:0.8, delay: 0.2} }}
-              className="hover:text-black dark:hover:text-white hover:bg-opacity-30 hover:bg-white opacity-80 active:scale-[0.95] p-1.5 rounded-md"
+              className={styling.doneButton}
               onClick={() => handleDone(todo.id)}
             >
               {todo.isDone ? (
                 <MdDoneAll
-                  className="dark:text-green-300 text-green-700"
+                  className={styling.mdDoneAll}
                   size={24}
                 />
               ) : (
